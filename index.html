@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASHAR FLUTES — Master Bamboo Flutes | One-of-a-Kind Signature Pieces</title>
+  
+  <!-- Fontes Tipográficas de Galeria / Fine Craft -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              black: '#07120a',     // Fundo verde musgo profundo e nobre
+              header: '#0b1b11',    // Tarja topo/rodapé verde escuro musgo
+              card: '#0f2216',      // Card verde florestal escuro
+              border: '#1b3824',    // Borda musgo sutil
+              gold: '#c99a5b',
+              goldLight: '#e4b677',
+              goldDark: '#99713b',
+              muted: '#94a599',     // Texto secundário tom sálvia
+              light: '#f5f2eb'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #07120a;
+      color: #f5f2eb;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    /* Overlay suave do Hero para clarear a foto e transicionar perfeito ao fundo sem friso */
+    .hero-bg {
+      background-image: 
+        linear-gradient(to bottom, 
+          rgba(11, 27, 17, 0.55) 0%, 
+          rgba(11, 27, 17, 0.15) 40%, 
+          rgba(11, 27, 17, 0.65) 85%, 
+          #07120a 100%
+        ),
+        url('hero-bg.jpg');
+      background-size: cover;
+      background-position: center 25%;
+      background-repeat: no-repeat;
+    }
+
+    /* Overlay suave do Bambuzal: clareado para ressaltar as folhas verdes e a trilha sem friso */
+    .forest-bg {
+      background-image: 
+        linear-gradient(to bottom, 
+          #07120a 0%, 
+          rgba(11, 27, 17, 0.15) 20%, 
+          rgba(11, 27, 17, 0.20) 80%, 
+          #07120a 100%
+        ),
+        url('bamboo-forest.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .video-container {
+      background: radial-gradient(circle at center, #142a1c 0%, #08140c 100%);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07120a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1b3824;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #c99a5b;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-black">
+
+  <!-- ================= TOP HEADER FIXO (VERDE MUSGO ESCURO) ================= -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#0b1b11]/95 backdrop-blur-md border-b border-[#183321] transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo da Marca -->
+      <a href="#" class="group flex flex-col">
+        <span class="font-serif text-xl sm:text-2xl tracking-[0.22em] text-brand-light group-hover:text-brand-gold transition-colors font-semibold">
+          ASHAR
+        </span>
+        <span class="text-[9px] tracking-[0.32em] text-brand-gold uppercase -mt-1 font-medium">
+          Master Flutes
+        </span>
+      </a>
+
+      <!-- Navegação Desktop -->
+      <nav class="hidden md:flex items-center space-x-7 text-xs uppercase tracking-[0.2em] font-medium text-brand-muted">
+        <a href="#collection" class="hover:text-brand-gold transition-colors" data-i18n="nav_collection">The Vault</a>
+        <a href="#maker" class="hover:text-brand-gold transition-colors" data-i18n="nav_maker">The Craft</a>
+        <a href="#shipping" class="hover:text-brand-gold transition-colors" data-i18n="nav_shipping">Delivery & Customs</a>
+        <a href="#contact" class="hover:text-brand-gold transition-colors" data-i18n="nav_contact">Contact</a>
+      </nav>
+
+      <!-- Controles Desktop: Moeda + Seletor de Idioma -->
+      <div class="hidden sm:flex items-center space-x-2 sm:space-x-3">
+        
+        <!-- Seletor de Moeda (USD, EUR, BRL) -->
+        <div class="flex items-center space-x-1 bg-[#07120a] border border-[#1b3824] px-2 py-1 rounded-full text-xs font-semibold">
+          <button onclick="setCurrency('USD')" id="cur-USD" class="px-1.5 py-0.5 rounded text-brand-gold font-bold transition">USD $</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setCurrency('EUR')" id="cur-EUR" class="px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition">EUR €</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setCurrency('BRL')" id="cur-BRL" class="px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition">BRL R$</button>
+        </div>
+
+        <!-- Seletor de Idioma (EN · FR · ES · IT · PT) -->
+        <div class="flex items-center space-x-1 bg-[#07120a] border border-[#1b3824] px-2 py-1 rounded-full text-xs font-semibold">
+          <button onclick="setLanguage('en')" id="btn-en" class="px-1.5 py-0.5 rounded text-brand-gold font-bold transition">EN</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('fr')" id="btn-fr" class="px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition">FR</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('es')" id="btn-es" class="px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition">ES</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('it')" id="btn-it" class="px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition">IT</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('pt')" id="btn-pt" class="px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition">PT</button>
+        </div>
+
+      </div>
+
+      <!-- Controles Mobile (Compactos + Botão Hambúrguer) -->
+      <div class="flex sm:hidden items-center space-x-2">
+        <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-[#07120a] border border-[#1b3824] text-brand-gold hover:text-brand-light focus:outline-none flex items-center space-x-1.5" aria-label="Open Menu">
+          <span class="text-[11px] font-bold text-brand-light" id="mobile-current-lang-cur">EN · USD</span>
+          <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Gaveta Retrátil de Links do Menu Mobile -->
+    <div id="mobile-menu" class="hidden sm:hidden px-6 pt-4 pb-6 bg-[#0b1b11] border-b border-[#183321] space-y-4 text-center shadow-2xl">
+      
+      <!-- Links de Navegação Mobile -->
+      <div class="space-y-3 text-xs uppercase tracking-[0.2em] font-medium border-b border-[#183321] pb-4">
+        <a href="#collection" onclick="toggleMobileMenu()" class="block py-2 text-brand-light hover:text-brand-gold transition" data-i18n="nav_collection">The Vault</a>
+        <a href="#maker" onclick="toggleMobileMenu()" class="block py-2 text-brand-light hover:text-brand-gold transition" data-i18n="nav_maker">The Craft</a>
+        <a href="#shipping" onclick="toggleMobileMenu()" class="block py-2 text-brand-light hover:text-brand-gold transition" data-i18n="nav_shipping">Delivery & Customs</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-brand-light hover:text-brand-gold transition" data-i18n="nav_contact">Contact</a>
+      </div>
+
+      <!-- Seletores Mobile na Gaveta -->
+      <div class="pt-2 flex flex-col items-center space-y-3">
+        <!-- Moeda Mobile -->
+        <div class="text-[10px] uppercase tracking-widest text-brand-muted">Select Currency</div>
+        <div class="inline-flex items-center space-x-1 bg-[#07120a] border border-[#1b3824] px-3 py-1.5 rounded-full text-xs font-semibold">
+          <button onclick="setCurrency('USD')" id="mcur-USD" class="px-2 py-0.5 rounded text-brand-gold font-bold">USD $</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setCurrency('EUR')" id="mcur-EUR" class="px-2 py-0.5 rounded text-brand-muted">EUR €</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setCurrency('BRL')" id="mcur-BRL" class="px-2 py-0.5 rounded text-brand-muted">BRL R$</button>
+        </div>
+
+        <!-- Idioma Mobile -->
+        <div class="text-[10px] uppercase tracking-widest text-brand-muted mt-2">Select Language</div>
+        <div class="inline-flex items-center space-x-1 bg-[#07120a] border border-[#1b3824] px-2.5 py-1.5 rounded-full text-xs font-semibold">
+          <button onclick="setLanguage('en')" id="mbtn-en" class="px-1.5 py-0.5 rounded text-brand-gold font-bold">EN</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('fr')" id="mbtn-fr" class="px-1.5 py-0.5 rounded text-brand-muted">FR</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('es')" id="mbtn-es" class="px-1.5 py-0.5 rounded text-brand-muted">ES</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('it')" id="mbtn-it" class="px-1.5 py-0.5 rounded text-brand-muted">IT</button>
+          <span class="text-[#1b3824]">|</span>
+          <button onclick="setLanguage('pt')" id="mbtn-pt" class="px-1.5 py-0.5 rounded text-brand-muted">PT</button>
+        </div>
+
+        <!-- Contato Direto na Gaveta Mobile -->
+        <div class="pt-3 w-full grid grid-cols-2 gap-2">
+          <a href="#" onclick="openProtectedEmail(event)" class="py-2.5 rounded-xl bg-brand-gold/10 border border-brand-gold/40 text-brand-gold text-[11px] font-semibold tracking-wider uppercase flex items-center justify-center space-x-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Email</span>
+          </a>
+          <a href="https://wa.me/5521991179232?text=Hello%20Ashar,%20I%20have%20a%20question%20about%20a%20flute" target="_blank" class="py-2.5 rounded-xl bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-[11px] font-semibold tracking-wider uppercase flex items-center justify-center space-x-1.5">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (FUSÃO TOTAL SEM FRISOS) ================= -->
+  <section class="hero-bg pt-36 sm:pt-44 pb-24 sm:pb-32 px-4 sm:px-6 lg:px-8 relative">
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-brand-gold/40 bg-black/60 backdrop-blur-md text-brand-gold text-[11px] uppercase tracking-[0.25em] mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+        <span data-i18n="hero_badge">100% Ready-to-Ship · One of a Kind</span>
+      </div>
+      
+      <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-brand-light tracking-wide font-normal leading-tight mb-6 drop-shadow-lg" data-i18n="hero_title">
+        Every Bamboo Has a Voice. <br>
+        <span class="italic text-brand-gold font-serif">Signed Masterpieces.</span>
+      </h1>
+      
+      <p class="max-w-2xl mx-auto text-brand-light/90 text-sm sm:text-base leading-relaxed font-light drop-shadow" data-i18n="hero_subtitle">
+        Handcrafted in our Brazilian atelier from selected cured bamboo, precision-tuned and signed by Ashar. Watch the authentic acoustic demonstration of each piece before acquiring your instrument.
+      </p>
+
+      <!-- Indicadores de Confiança -->
+      <div class="mt-10 flex flex-wrap justify-center gap-4 sm:gap-6 text-xs text-brand-light/90 tracking-wider">
+        <div class="flex items-center space-x-2 bg-black/50 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/10">
+          <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
+          <span data-i18n="perk_shipping">Dispatched Worldwide from Brazil</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-black/50 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/10">
+          <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
+          <span data-i18n="perk_piece">Unique Numbered Piece</span>
+        </div>
+        <div class="flex items-center space-x-2 bg-black/50 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/10">
+          <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
+          <span data-i18n="perk_sound">Sound Test on Video</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BARRA DE FILTROS ================= -->
+  <section id="collection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-8">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      
+      <!-- Filtro por Tipo de Flauta (Tags) -->
+      <div class="flex flex-wrap items-center gap-2" id="type-filters">
+        <button onclick="filterType('all')" class="type-btn active px-4 py-1.5 rounded-full text-xs font-medium tracking-wider border border-brand-gold bg-brand-gold text-black transition" data-type="all" data-i18n="filter_all">All Types</button>
+        <button onclick="filterType('naf')" class="type-btn px-4 py-1.5 rounded-full text-xs font-medium tracking-wider border border-brand-border bg-brand-card hover:border-brand-gold/60 text-brand-muted hover:text-brand-light transition" data-type="naf">Native Flute (NAF)</button>
+        <button onclick="filterType('bansuri')" class="type-btn px-4 py-1.5 rounded-full text-xs font-medium tracking-wider border border-brand-border bg-brand-card hover:border-brand-gold/60 text-brand-muted hover:text-brand-light transition" data-type="bansuri">Bansuri</button>
+        <button onclick="filterType('shakuhachi')" class="type-btn px-4 py-1.5 rounded-full text-xs font-medium tracking-wider border border-brand-border bg-brand-card hover:border-brand-gold/60 text-brand-muted hover:text-brand-light transition" data-type="shakuhachi">Shakuhachi</button>
+        <button onclick="filterType('transverse')" class="type-btn px-4 py-1.5 rounded-full text-xs font-medium tracking-wider border border-brand-border bg-brand-card hover:border-brand-gold/60 text-brand-muted hover:text-brand-light transition" data-type="transverse">Transverse</button>
+      </div>
+
+      <!-- Filtro por Status (Disponíveis vs Vendidas) -->
+      <div class="flex items-center space-x-1 bg-brand-card p-1 rounded-full border border-brand-border self-start md:self-auto text-xs">
+        <button onclick="filterStatus('all')" class="status-btn active px-3 py-1 rounded-full text-brand-light font-medium bg-brand-border transition" data-status="all" data-i18n="status_all">All</button>
+        <button onclick="filterStatus('available')" class="status-btn px-3 py-1 rounded-full text-brand-muted hover:text-brand-light transition" data-status="available">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1.5"></span><span data-i18n="status_available">Available</span>
+        </button>
+        <button onclick="filterStatus('sold')" class="status-btn px-3 py-1 rounded-full text-brand-muted hover:text-brand-light transition" data-status="sold" data-i18n="status_sold">Archived / Sold</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= GRID DE VÍDEOS / VITRINE ================= -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="flutes-grid">
+      <!-- Cards gerados dinamicamente com tradução e câmbio em tempo real -->
+    </div>
+
+    <!-- Botão Elegante de Carregar Mais (Paginação Progressiva) -->
+    <div class="mt-16 text-center" id="load-more-container">
+      <button onclick="loadMoreFlutes()" id="btn-load-more" class="px-8 py-3.5 rounded-full border border-brand-border bg-brand-card hover:border-brand-gold text-brand-light hover:text-brand-gold text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 shadow-lg hover:shadow-brand-gold/10 inline-flex items-center space-x-2">
+        <span data-i18n="load_more_btn">Load More Pieces</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= MODAL CINEMATOGRÁFICO DE VÍDEO (THEATER MODE) ================= -->
+  <div id="video-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300">
+    <div class="relative w-full max-w-4xl bg-brand-card rounded-3xl border border-brand-border overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]">
+      
+      <!-- Botão Fechar Modal (X) -->
+      <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-black/70 border border-white/20 text-white/80 hover:text-brand-gold hover:border-brand-gold flex items-center justify-center transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Player de Vídeo Expandido -->
+      <div class="flex-1 bg-black flex items-center justify-center relative min-h-[350px] md:min-h-[500px]">
+        <div id="modal-video-box" class="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-t from-black via-brand-card/20 to-black">
+          <div class="w-20 h-20 rounded-full bg-brand-gold/20 border border-brand-gold text-brand-gold flex items-center justify-center shadow-2xl mb-4 animate-pulse">
+            <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="text-sm font-serif text-brand-light font-medium" id="modal-video-prompt">Playing High-Definition Acoustic Demonstration</p>
+          <span class="text-xs text-brand-gold tracking-widest uppercase mt-2">Cloudflare R2 Direct Stream</span>
+        </div>
+      </div>
+
+      <!-- Barra Lateral de Aquisição (Dentro do Próprio Vídeo) -->
+      <div class="w-full md:w-80 p-6 md:p-8 bg-brand-card flex flex-col justify-between border-t md:border-t-0 md:border-l border-brand-border">
+        <div>
+          <span id="modal-opus" class="text-[11px] tracking-[0.25em] text-brand-gold uppercase font-serif font-semibold">Opus #042</span>
+          <h3 id="modal-title" class="text-xl font-serif text-brand-light mt-1 font-normal">Key of F# Minor (432 Hz)</h3>
+          <p id="modal-desc" class="text-xs text-brand-muted mt-3 leading-relaxed">
+            Selected thick-walled bamboo, fire-cured with amber shellac. Deep meditative tone with quick harmonic response.
+          </p>
+
+          <div class="mt-6 pt-6 border-t border-brand-border/60 space-y-2 text-xs text-brand-muted">
+            <div class="flex justify-between">
+              <span id="modal-lbl-length">Length:</span>
+              <span id="modal-val-length" class="text-brand-light font-medium">57 cm</span>
+            </div>
+            <div class="flex justify-between">
+              <span id="modal-lbl-tuning">Tuning:</span>
+              <span id="modal-val-tuning" class="text-brand-light font-medium">Concert A=432Hz</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Delivery:</span>
+              <span class="text-brand-gold font-medium">Express Flight</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preço, Botão de Compra e Consulta ao Artesão -->
+        <div class="mt-6 pt-5 border-t border-brand-border">
+          <div class="text-[11px] text-brand-muted" id="modal-lbl-price">All-Inclusive Price</div>
+          <div class="text-2xl font-serif font-bold text-brand-light mt-0.5" id="modal-val-price">
+            $380 <span class="text-xs font-sans font-normal text-brand-muted">USD</span>
+          </div>
+
+          <div id="modal-action-box" class="mt-4">
+            <!-- Botão inserido via JS -->
+          </div>
+
+          <!-- Opção de Consulta Antes de Comprar -->
+          <div class="mt-3 text-center">
+            <a href="#contact" onclick="closeVideoModal()" class="text-[11px] text-brand-gold hover:text-brand-goldLight transition inline-flex items-center space-x-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              <span data-i18n="modal_ask_maker">Questions about this piece? Ask the maker</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= THE CRAFT (O ARTESÃO & A FLORESTA SAGRADA DE BAMBU — TOTALMENTE SEM FRISO) ================= -->
+  <section id="maker" class="forest-bg py-32 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold" data-i18n="maker_label">The Philosophy</span>
+      
+      <h2 class="font-serif text-3xl sm:text-5xl text-brand-light mt-3 mb-8 leading-tight drop-shadow-md" data-i18n="maker_title">
+        No two pieces of bamboo are identical. Neither are their voices.
+      </h2>
+      
+      <div class="space-y-6 text-brand-light text-sm sm:text-base leading-relaxed font-light max-w-3xl mx-auto drop-shadow-md" data-i18n="maker_p">
+        <!-- Texto poético de cocriação inserido dinamicamente por setLanguage() -->
+      </div>
+
+      <!-- Métricas em Cards Translúcidos -->
+      <div class="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <div class="bg-black/60 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-gold/40 transition-colors">
+          <div class="font-serif text-3xl text-brand-gold font-bold">100%</div>
+          <div class="text-[11px] text-brand-light/90 uppercase tracking-widest mt-1.5 font-medium" data-i18n="stat_bamboo">Handcrafted</div>
+        </div>
+        <div class="bg-black/60 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-gold/40 transition-colors">
+          <div class="font-serif text-3xl text-brand-gold font-bold">4-7 Days</div>
+          <div class="text-[11px] text-brand-light/90 uppercase tracking-widest mt-1.5 font-medium" data-i18n="stat_delivery">Express Flight</div>
+        </div>
+        <div class="bg-black/60 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-brand-gold/40 transition-colors">
+          <div class="font-serif text-3xl text-brand-gold font-bold">Unique</div>
+          <div class="text-[11px] text-brand-light/90 uppercase tracking-widest mt-1.5 font-medium" data-i18n="stat_pieces">Numbered Pieces</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= DELIVERY, DUTIES & RETURN POLICY ================= -->
+  <section id="shipping" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-xs uppercase tracking-[0.25em] text-brand-gold font-semibold" data-i18n="ship_label">Global Reach</span>
+      <h2 class="font-serif text-3xl text-brand-light mt-2" data-i18n="ship_title">Worldwide Express & Customs Terms</h2>
+      <p class="text-xs text-brand-muted mt-2 max-w-xl mx-auto" data-i18n="ship_subtitle">
+        Direct from our studio in Brazil to your hands, with full insurance and tracking.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1: Frete Expresso e Regiões -->
+      <div class="bg-brand-card p-6 rounded-2xl border border-brand-border flex flex-col justify-between">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </div>
+          <h4 class="font-serif text-base text-brand-light font-medium" data-i18n="ship_card1_title">Free Express Shipping</h4>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed" data-i18n="ship_card1_desc">
+            Complimentary priority delivery included: Sedex within Brazil, and EMS International, FedEx or DHL Express worldwide (full tracking and signature required upon delivery, 4–7 business days).
+          </p>
+          <p class="text-xs text-brand-gold/90 mt-3 pt-3 border-t border-brand-border/60" data-i18n="ship_card1_other">
+            For other regions (Asia, Oceania, Africa), please contact us for a custom shipping quote prior to ordering.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 flex items-center justify-between">
+          <a href="#" onclick="openProtectedEmail(event)" class="text-xs text-brand-gold hover:text-brand-goldLight font-medium tracking-wider uppercase transition inline-flex items-center space-x-1">
+            <span data-i18n="btn_quote_email">Quote via Email</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a href="https://wa.me/5521991179232?text=Hello%20Ashar,%20I%20would%20like%20a%20shipping%20quote%20for%20my%20country" target="_blank" class="text-xs text-emerald-400 hover:text-emerald-300 font-medium tracking-wider uppercase transition inline-flex items-center space-x-1">
+            <span>WhatsApp</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Termos Aduaneiros DDU -->
+      <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
+        <div class="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h4 class="font-serif text-base text-brand-light font-medium" data-i18n="ship_card2_title">Destination Customs & Duties (DDU)</h4>
+        <p class="text-xs text-brand-muted mt-2 leading-relaxed" data-i18n="ship_card2_desc">
+          Every international order is dispatched under Delivered Duty Unpaid (DDU) terms. Any local customs duties, import tariffs, VAT, or clearance fees determined by the destination country's customs authority (including the United States, European Union, United Kingdom, and others) are the sole responsibility of the buyer and must be settled upon arrival.
+        </p>
+      </div>
+
+      <!-- Card 3: Devoluções e Reenvio -->
+      <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
+        <div class="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <h4 class="font-serif text-base text-brand-light font-medium" data-i18n="ship_card3_title">Return & Reshipment Policy</h4>
+        <p class="text-xs text-brand-muted mt-2 leading-relaxed" data-i18n="ship_card3_desc">
+          If an order returns to Brazil due to unpaid customs duties, incorrect delivery address, or buyer refusal, return shipping fees and re-dispatch costs will be billed to the buyer prior to any reshipment.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION (ATELIÊ & PERGUNTAS ANTES DE COMPRAR) ================= -->
+  <section id="contact" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#183321]">
+    <div class="text-center mb-12">
+      <span class="text-xs uppercase tracking-[0.25em] text-brand-gold font-semibold" data-i18n="contact_label">Atelier Inquiries</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-brand-light mt-2" data-i18n="contact_title">Questions Before Acquiring Your Piece?</h2>
+      <p class="text-xs text-brand-muted mt-2 max-w-xl mx-auto leading-relaxed" data-i18n="contact_subtitle">
+        Feel free to reach out directly to the maker. We are here to assist with acoustic advice, tuning choices, custom inquiries, and worldwide shipping guidance.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      
+      <!-- Card Email (Preferencial do Luthier) -->
+      <div class="bg-brand-card p-8 rounded-2xl border border-brand-border flex flex-col justify-between hover:border-brand-gold/40 transition">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h4 class="font-serif text-lg text-brand-light font-medium" data-i18n="contact_email_title">Direct Atelier Email</h4>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed" data-i18n="contact_email_desc">
+            Prefer email for your inquiries? Send your questions directly to Ashar for detailed acoustic guidance or order assistance.
+          </p>
+        </div>
+        <div class="mt-6">
+          <a href="#" onclick="openProtectedEmail(event)" class="w-full py-3.5 rounded-xl bg-brand-gold hover:bg-brand-goldLight text-black font-semibold text-xs tracking-wider uppercase transition flex items-center justify-center space-x-2 shadow-md hover:shadow-brand-gold/20">
+            <span data-i18n="btn_send_email">Send Email to Maker</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card WhatsApp (Ágil e Direto) -->
+      <div class="bg-brand-card p-8 rounded-2xl border border-brand-border flex flex-col justify-between hover:border-brand-gold/40 transition">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-emerald-950/80 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-4">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          </div>
+          <h4 class="font-serif text-lg text-brand-light font-medium" data-i18n="contact_wa_title">WhatsApp Studio Chat</h4>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed" data-i18n="contact_wa_desc">
+            Quick text or audio messages for immediate assistance regarding stock availability, custom key requests, or express delivery.
+          </p>
+        </div>
+        <div class="mt-6">
+          <a href="https://wa.me/5521991179232?text=Hello%20Ashar,%20I%20have%20a%20question%20about%20a%20flute" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-900/70 hover:bg-emerald-800 text-emerald-200 border border-emerald-500/40 font-semibold text-xs tracking-wider uppercase transition flex items-center justify-center space-x-2">
+            <span data-i18n="btn_chat_wa">Open WhatsApp Chat</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER (VERDE MUSGO ESCURO) ================= -->
+  <footer class="border-t border-[#183321] py-12 bg-[#0b1b11] text-xs text-brand-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex flex-col items-center md:items-start">
+        <span class="font-serif text-lg tracking-[0.2em] text-brand-light font-semibold">ASHAR FLUTES</span>
+        <span class="text-[10px] text-brand-muted tracking-widest mt-0.5">Master Bamboo Flutes · Atelier in Brazil</span>
+      </div>
+
+      <!-- Links Sociais Oficiais -->
+      <div class="flex flex-wrap items-center justify-center gap-5 text-brand-muted">
+        <a href="https://www.youtube.com/@flautanativa" target="_blank" class="hover:text-brand-gold transition flex items-center space-x-1.5 font-medium">
+          <svg class="w-4 h-4 fill-current text-red-500" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span>@flautanativa</span>
+        </a>
+        <a href="https://www.instagram.com/flautanativa/" target="_blank" class="hover:text-brand-gold transition flex items-center space-x-1.5 font-medium">
+          <svg class="w-3.5 h-3.5 fill-current text-pink-400" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>@flautanativa</span>
+        </a>
+        <a href="https://www.instagram.com/ralphashar/" target="_blank" class="hover:text-brand-gold transition flex items-center space-x-1.5 font-medium">
+          <svg class="w-3.5 h-3.5 fill-current text-pink-400" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>@ralphashar</span>
+        </a>
+        <a href="https://wa.me/5521991179232?text=Hello%20Ashar,%20I%20would%20like%20to%20inquire%20about%20a%20flute" target="_blank" class="hover:text-emerald-300 transition flex items-center space-x-1.5 font-medium">
+          <svg class="w-3.5 h-3.5 fill-current text-emerald-400" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="text-[11px] text-brand-muted/70">
+        &copy; 2026 Ashar Flutes. All Rights Reserved.
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT: INTEGRAÇÃO GOOGLE SHEETS, CÂMBIO E IDIOMAS ================= -->
+  <script>
+    // 1. CARREGAMENTO EM TEMPO REAL VIA GOOGLE SHEETS JSONP
+    const SHEET_ID = '1ZWM806jtjD0uQ-pRlX9Jw8jT67XltNZwVykzWq98C8w';
+
+    // Dados padrão de reserva caso a planilha ainda não tenha carregado
+    let flutesData = [
+      {
+        id: "042",
+        type: "naf",
+        type_label: { en: "NAF Style", fr: "Style NAF", es: "Estilo NAF", it: "Stile NAF", pt: "Estilo NAF" },
+        status: "available",
+        price_usd: 380,
+        title: {
+          en: "Key of F# Minor (432 Hz)",
+          fr: "Flûte NAF en Fa# Mineur (432 Hz)",
+          es: "Flauta NAF en Fa# Menor (432 Hz)",
+          it: "Flauto NAF in Fa# Minore (432 Hz)",
+          pt: "Flauta NAF em Fá# Menor (432 Hz)"
+        },
+        desc: {
+          en: "Selected thick-walled bamboo, fire-cured with amber shellac. Deep meditative tone with quick harmonic response.",
+          fr: "Bambou sélectionné à parois épaisses, mûri au feu et laqué au shellac ambré. Timbre méditatif profond.",
+          es: "Bambú curado de pared gruesa, acabado al fuego con goma laca ámbar. Tono meditativo profundo y armónicos claros.",
+          it: "Bambù a parete spessa selezionato, curato a fuoco con gommalacca ambrata. Timbro meditativo e armonici puri.",
+          pt: "Bambu curado de parede espessa, acabamento ao fogo com goma laca âmbar. Timbre meditativo profundo com rápida resposta de harmônicos."
+        },
+        specs: { length: "57 cm", tuning: "Concert A=432Hz" },
+        video_url: "https://media.asharflutes.com/042.mp4",
+        stripe_url: "https://buy.stripe.com/exemplo1"
+      },
+      {
+        id: "045",
+        type: "bansuri",
+        type_label: { en: "Bansuri", fr: "Bansuri", es: "Bansuri", it: "Bansuri", pt: "Bansuri" },
+        status: "available",
+        price_usd: 340,
+        title: {
+          en: "Concert Bansuri in E Natural (440 Hz)",
+          fr: "Bansuri de Concert en Mi Naturel (440 Hz)",
+          es: "Bansuri de Concierto en Mi Natural (440 Hz)",
+          it: "Bansuri da Concerto in Mi Naturale (440 Hz)",
+          pt: "Bansuri de Concerto em Mi Natural (440 Hz)"
+        },
+        desc: {
+          en: "Traditional 7-hole Indian transverse flute. Silky tone across 2.5 octaves, fine nylon bind wrapping in deep crimson.",
+          fr: "Flûte traversière indienne traditionnelle à 7 trous. Son soyeux sur 2,5 octaves, ligatures carmin.",
+          es: "Flauta traversa tradicional de la India con 7 orificios. Sonido sedoso en 2.5 octavas y ataduras carmesí.",
+          it: "Flauto traverso tradizionale indiano a 7 fori. Suono vellutato su 2,5 ottave, legature carminio.",
+          pt: "Flauta transversal indiana clássica de 7 furos. Timbre aveludado ao longo de 2,5 oitavas, amarrações de reforço em fio carmesim."
+        },
+        specs: { length: "74 cm", tuning: "Indian Classical" },
+        video_url: "https://media.asharflutes.com/045.mp4",
+        stripe_url: "https://buy.stripe.com/exemplo2"
+      },
+      {
+        id: "046",
+        type: "shakuhachi",
+        type_label: { en: "Shakuhachi", fr: "Shakuhachi", es: "Shakuhachi", it: "Shakuhachi", pt: "Shakuhachi" },
+        status: "available",
+        price_usd: 410,
+        title: {
+          en: "Shakuhachi 1.8 in D (Ro)",
+          fr: "Shakuhachi 1.8 en Ré (Ro)",
+          es: "Shakuhachi 1.8 en Re (Ro)",
+          it: "Shakuhachi 1.8 in Re (Ro)",
+          pt: "Shakuhachi 1.8 em Ré (Ro)"
+        },
+        desc: {
+          en: "Curved root-end aesthetic, polished urushi-style natural bore. Meditative deep breathing response.",
+          fr: "Esthétique avec base racinaire, alésage poli style urushi. Réponse méditative profonde au souffle.",
+          es: "Estética con base de raíz, orificio pulido estilo urushi. Respuesta profunda para meditación sonora Suizen.",
+          it: "Estetica con radice ricurva, canna lucidata in stile urushi. Risposta profonda al respiro meditativo.",
+          pt: "Estética com base de raiz curva, canal interno polido estilo urushi. Resposta profunda para meditação através do sopro."
+        },
+        specs: { length: "54.5 cm", tuning: "Concert D (Ro)" },
+        video_url: "https://media.asharflutes.com/046.mp4",
+        stripe_url: "https://buy.stripe.com/exemplo3"
+      },
+      {
+        id: "038",
+        type: "shakuhachi",
+        type_label: { en: "Shakuhachi", fr: "Shakuhachi", es: "Shakuhachi", it: "Shakuhachi", pt: "Shakuhachi" },
+        status: "sold",
+        price_usd: 420,
+        title: {
+          en: "Shakuhachi 1.8 in D (Ro)",
+          fr: "Shakuhachi 1.8 en Ré (Ro)",
+          es: "Shakuhachi 1.8 en Re (Ro)",
+          it: "Shakuhachi 1.8 in Re (Ro)",
+          pt: "Shakuhachi 1.8 em Ré (Ro)"
+        },
+        desc: {
+          en: "Curved root-end aesthetic, polished urushi-style natural bore. Acquired by a private collector in France.",
+          fr: "Esthétique avec base racinaire. Acquise par un collectionneur privé en France.",
+          es: "Estética con base de raíz. Adquirida por un coleccionista privado en Francia.",
+          it: "Estetica con radice ricurva. Acquistata da un collezionista privato in Francia.",
+          pt: "Estética com base de raiz curva. Adquirida por colecionador particular na França."
+        },
+        specs: { length: "54.5 cm", tuning: "Delivered (France)" },
+        video_url: "https://media.asharflutes.com/038.mp4",
+        stripe_url: "#"
+      }
+    ];
+
+    // Parser Dinâmico com Suporte a Colunas Multilíngues (Fórmulas GOOGLETRANSLATE)
+    window.handleSheetData = function(json) {
+      if (!json || !json.table || !json.table.rows) return;
+      const cols = json.table.cols || [];
+      const rows = json.table.rows;
+      const items = [];
+
+      // Mapeamento dinâmico de cabeçalho
+      const colMap = {};
+      cols.forEach((col, idx) => {
+        if (col && col.label) {
+          colMap[col.label.toLowerCase().trim()] = idx;
+        }
+      });
+
+      // Se a primeira linha contiver nomes de colunas
+      let startRow = 0;
+      if (rows.length > 0 && rows[0].c && rows[0].c[0] && String(rows[0].c[0].v).toLowerCase() === 'id') {
+        rows[0].c.forEach((cell, idx) => {
+          if (cell && cell.v) colMap[String(cell.v).toLowerCase().trim()] = idx;
+        });
+        startRow = 1;
+      }
+
+      for (let i = startRow; i < rows.length; i++) {
+        const c = rows[i].c;
+        if (!c || c.length < 5) continue;
+
+        const getVal = (colName, fallbackIdx) => {
+          const idx = (colMap[colName] !== undefined) ? colMap[colName] : fallbackIdx;
+          if (idx !== undefined && c[idx]) {
+            return c[idx].f || c[idx].v || '';
+          }
+          return '';
+        };
+
+        const idVal = getVal('id', 0);
+        if (!idVal) continue;
+
+        const titlePt = getVal('title_pt') || getVal('title', 5);
+        const descPt = getVal('desc_pt') || getVal('desc', 6);
+
+        const titleObj = {
+          pt: titlePt,
+          en: getVal('title_en') || titlePt,
+          fr: getVal('title_fr') || titlePt,
+          es: getVal('title_es') || titlePt,
+          it: getVal('title_it') || titlePt
+        };
+
+        const descObj = {
+          pt: descPt,
+          en: getVal('desc_en') || descPt,
+          fr: getVal('desc_fr') || descPt,
+          es: getVal('desc_es') || descPt,
+          it: getVal('desc_it') || descPt
+        };
+
+        const priceVal = parseFloat(getVal('price_usd', 4)) || 0;
+
+        items.push({
+          id: String(idVal).trim().padStart(3, '0'),
+          type: String(getVal('type', 1)).trim().toLowerCase() || 'naf',
+          type_label: String(getVal('type_label', 2)).trim() || 'NAF Style',
+          status: String(getVal('status', 3)).trim().toLowerCase() || 'available',
+          price_usd: priceVal,
+          title: titleObj,
+          desc: descObj,
+          specs: {
+            length: String(getVal('length', 7) || getVal('specs_length', 15) || '').trim(),
+            tuning: String(getVal('tuning', 8) || getVal('specs_tuning', 16) || '').trim()
+          },
+          video_url: String(getVal('video_url', 9) || getVal('video_url', 17) || '').trim(),
+          stripe_url: String(getVal('stripe_url', 10) || getVal('stripe_url', 18) || '#').trim()
+        });
+      }
+
+      if (items.length > 0) {
+        flutesData = items;
+        renderCards();
+        console.log("Inventário sincronizado com o Google Sheets ao vivo (JSONP):", flutesData);
+      }
+    };
+
+    function loadGoogleSheetsLive() {
+      const script = document.createElement('script');
+      script.src = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=responseHandler:handleSheetData&t=${Date.now()}`;
+      document.body.appendChild(script);
+    }
+
+    loadGoogleSheetsLive();
+
+    // 2. FUNÇÃO TOGGLE MENU MOBILE
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) {
+        menu.classList.toggle('hidden');
+      }
+    }
+
+    // 3. ENVIO SEGURO DE E-MAIL (Sem Exposição em Texto Estático)
+    function openProtectedEmail(e) {
+      if (e) e.preventDefault();
+      const u = 'ralphashar';
+      const d = 'gmail.com';
+      const recipient = `${u}@${d}`;
+      const subject = encodeURIComponent("Inquiry regarding Ashar Master Bamboo Flute");
+      window.location.href = `mailto:${recipient}?subject=${subject}`;
+    }
+
+    // 4. CÂMBIO DE MOEDAS (USD, EUR, BRL)
+    let currentCurrency = 'USD';
+    let exchangeRates = { USD: 1.0, EUR: 0.92, BRL: 5.75 };
+
+    async function fetchLiveExchangeRates() {
+      try {
+        const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const data = await res.json();
+        if (data && data.rates) {
+          exchangeRates.EUR = data.rates.EUR || 0.92;
+          exchangeRates.BRL = data.rates.BRL || 5.75;
+          renderCards();
+        }
+      } catch (e) {
+        console.log("Usando taxas de câmbio padrão de contingência");
+      }
+    }
+    fetchLiveExchangeRates();
+
+    function setCurrency(cur) {
+      currentCurrency = cur;
+      ['USD', 'EUR', 'BRL'].forEach(c => {
+        const btnDesktop = document.getElementById(`cur-${c}`);
+        const btnMobile = document.getElementById(`mcur-${c}`);
+        const isCur = (c === cur);
+        
+        if (btnDesktop) {
+          btnDesktop.className = isCur 
+            ? "px-1.5 py-0.5 rounded text-brand-gold font-bold transition" 
+            : "px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition";
+        }
+        if (btnMobile) {
+          btnMobile.className = isCur 
+            ? "px-2 py-0.5 rounded text-brand-gold font-bold" 
+            : "px-2 py-0.5 rounded text-brand-muted";
+        }
+      });
+
+      updateMobilePill();
+      renderCards();
+    }
+
+    function formatPrice(usdPrice) {
+      if (currentCurrency === 'EUR') {
+        const eur = Math.round(usdPrice * exchangeRates.EUR);
+        return `€${eur} <span class="text-xs font-sans font-normal text-brand-muted">EUR</span>`;
+      }
+      if (currentCurrency === 'BRL') {
+        const brl = Math.round(usdPrice * exchangeRates.BRL);
+        return `R$ ${brl.toLocaleString('pt-BR')} <span class="text-xs font-sans font-normal text-brand-muted">BRL</span>`;
+      }
+      return `$${usdPrice} <span class="text-xs font-sans font-normal text-brand-muted">USD</span>`;
+    }
+
+    function updateMobilePill() {
+      const pill = document.getElementById('mobile-current-lang-cur');
+      if (pill) {
+        pill.textContent = `${currentLang.toUpperCase()} · ${currentCurrency}`;
+      }
+    }
+
+    // 5. DICIONÁRIO COMPLETO DE IDIOMAS (COM CONTATO E REDES SOCIAIS)
+    let currentLang = 'en';
+
+    const translations = {
+      en: {
+        nav_collection: "The Vault",
+        nav_maker: "The Craft",
+        nav_shipping: "Delivery & Customs",
+        nav_contact: "Contact",
+        hero_badge: "100% Ready-to-Ship · One of a Kind",
+        hero_title: "Every Bamboo Has a Voice. <br><span class='italic text-brand-gold font-serif'>Signed Masterpieces.</span>",
+        hero_subtitle: "Handcrafted in our Brazilian atelier from selected cured bamboo, precision-tuned and signed by Ashar. Watch the authentic acoustic demonstration of each piece before acquiring your instrument.",
+        perk_shipping: "Dispatched Worldwide from Brazil",
+        perk_piece: "Unique Numbered Piece",
+        perk_sound: "Sound Test on Video",
+        filter_all: "All Types",
+        status_all: "All",
+        status_available: "Available",
+        status_sold: "Archived / Sold",
+        badge_available: "Available",
+        badge_sold: "Sold · Archived",
+        play_video: "Play Acoustic Demonstration",
+        video_recorded: "Cloudflare R2 Video · Opus",
+        length_label: "Length",
+        tuning_label: "Tuning",
+        price_label: "All-Inclusive Price",
+        final_price_label: "Archived Price",
+        btn_acquire: "Acquire Piece",
+        btn_sold: "Sold Out",
+        modal_ask_maker: "Questions about this piece? Ask the maker",
+        load_more_btn: "Load More Archived Pieces",
+        maker_label: "The Philosophy",
+        maker_title: "No two pieces of bamboo are identical. Neither are their voices.",
+        maker_p: "<p>Every instrument is born from a silent dialogue and a deep co-creation with nature. I do not invent the sound: it already rests within the bamboo, shaped by the sun, rain, and seasons of the forest. My craft is simply to listen, refine with care, and open the pathways of the breath so the living voice of the wood may emerge.</p><p>Over a decade of dedicated research and acoustic craftsmanship in my Brazilian atelier. When a flute, among so many, singularly stands out in tone, presence, and resonance, it receives my personal signature and enters this Vault.</p>",
+        stat_bamboo: "Handcrafted",
+        stat_delivery: "Express Flight",
+        stat_pieces: "Numbered Pieces",
+        ship_label: "Global Reach",
+        ship_title: "Worldwide Express & Customs Terms",
+        ship_subtitle: "Direct from our studio in Brazil to your hands, with full insurance and tracking.",
+        ship_card1_title: "Free Express Shipping",
+        ship_card1_desc: "Complimentary priority delivery included: Sedex within Brazil, and EMS International, FedEx or DHL Express worldwide (full tracking and signature required upon delivery, 4–7 business days).",
+        ship_card1_other: "For other regions (Asia, Oceania, Africa, Middle East), please contact us for a custom shipping quote prior to ordering.",
+        btn_quote_email: "Quote via Email",
+        ship_card2_title: "Destination Customs & Duties (DDU)",
+        ship_card2_desc: "Every international order is dispatched under Delivered Duty Unpaid (DDU) terms. Any local customs duties, import tariffs, VAT, or clearance fees determined by the destination country's customs authority (including the United States, European Union, United Kingdom, and others) are the sole responsibility of the buyer and must be settled upon arrival.",
+        ship_card3_title: "Return & Reshipment Policy",
+        ship_card3_desc: "If an order returns to Brazil due to unpaid customs duties, incorrect delivery address, or buyer refusal, return shipping fees and re-dispatch costs will be billed to the buyer prior to any reshipment.",
+        contact_label: "Atelier Inquiries",
+        contact_title: "Questions Before Acquiring Your Piece?",
+        contact_subtitle: "Feel free to reach out directly to the maker. We are here to assist with acoustic advice, tuning choices, custom inquiries, and worldwide shipping guidance.",
+        contact_email_title: "Direct Atelier Email",
+        contact_email_desc: "Prefer email for your inquiries? Send your questions directly to Ashar for detailed acoustic guidance, tuning consultations, or order assistance.",
+        btn_send_email: "Send Email to Maker",
+        contact_wa_title: "WhatsApp Studio Chat",
+        contact_wa_desc: "Quick text or audio messages for immediate assistance regarding stock availability, custom key requests, or express delivery.",
+        btn_chat_wa: "Open WhatsApp Chat"
+      },
+      fr: {
+        nav_collection: "La Galerie",
+        nav_maker: "L'Atelier",
+        nav_shipping: "Livraison & Douanes",
+        nav_contact: "Contact",
+        hero_badge: "Prêt à Expédier · Pièce Unique",
+        hero_title: "Chaque Bambou a une Voix. <br><span class='italic text-brand-gold font-serif'>Chefs-d'œuvre Signés.</span>",
+        hero_subtitle: "Façonné dans notre atelier au Brésil à partir de bambous mûris sélectionnés, accordé avec précision et signé par Ashar. Regardez la démonstration acoustique en vidéo avant d'acquérir votre pièce.",
+        perk_shipping: "Expédié du Brésil dans le Monde Entier",
+        perk_piece: "Pièce Numérotée Unique",
+        perk_sound: "Test Sonore en Vidéo",
+        filter_all: "Tous les Types",
+        status_all: "Tous",
+        status_available: "Disponible",
+        status_sold: "Archivé / Vendu",
+        badge_available: "Disponible",
+        badge_sold: "Vendu · Archivé",
+        play_video: "Écouter la Démonstration Acoustique",
+        video_recorded: "Vidéo Cloudflare R2 · Opus",
+        length_label: "Longueur",
+        tuning_label: "Accordage",
+        price_label: "Prix Tout Inclus",
+        final_price_label: "Prix d'Archive",
+        btn_acquire: "Acquérir la Pièce",
+        btn_sold: "Épuisé",
+        modal_ask_maker: "Des questions sur cette pièce ? Contactez le luthier",
+        load_more_btn: "Charger Plus d'Archives",
+        maker_label: "La Philosophie",
+        maker_title: "Deux bambous ne sont jamais identiques. Leurs voix non plus.",
+        maker_p: "<p>Chaque instrument naît d'un dialogue silencieux et d'une profonde co-création avec la nature. Je n'invente pas le son : il repose déjà au cœur du bambou, façonné par le soleil, la pluie et le souffle de la forêt. Mon rôle d'artisan est simplement d'écouter, d'épurer la matière et d'ouvrir les passages du souffle pour que l'âme vivante du bois trouve sa voix.</p><p>Plus de 10 ans de recherche et de perfectionnement dédiés à chaque instrument dans mon atelier au Brésil. Lorsqu'une flûte, parmi tant d'autres, se distingue particulièrement par son timbre et sa résonance, elle reçoit ma signature personnelle et rejoint ce Temple.</p>",
+        stat_bamboo: "Fait Main",
+        stat_delivery: "Vol Express",
+        stat_pieces: "Pièces Numérotées",
+        ship_label: "Portée Mondiale",
+        ship_title: "Livraison Express & Conditions Douanières",
+        ship_subtitle: "Directement de notre atelier au Brésil entre vos mains, avec assurance complète et suivi.",
+        ship_card1_title: "Livraison Express Gratuite",
+        ship_card1_desc: "Livraison prioritaire offerte : Sedex au Brésil, et EMS International, FedEx ou DHL Express dans le monde entier (suivi complet et signature, 4 à 7 jours ouvrés).",
+        ship_card1_other: "Pour les autres régions (Asie, Océanie, Afrique), veuillez nous contacter pour un devis d'expédition préalable.",
+        btn_quote_email: "Devis par E-mail",
+        ship_card2_title: "Frais de Douane à l'Arrivée (DDU)",
+        ship_card2_desc: "Toutes les commandes internationales sont expédiées sous le régime DDU (rendu droits non acquittés). Tous les droits de douane, taxes d'importation, TVA locale ou frais de dédouanement fixés par les douanes du pays de destination (y compris les États-Unis, l'Union européenne, le Royaume-Uni, etc.) sont à la charge exclusive de l'acheteur à la livraison.",
+        ship_card3_title: "Politique de Retour & Réexpédition",
+        ship_card3_desc: "Si un colis revient au Brésil en raison de taxes douanières impayées, adresse erronée ou refus, les frais de retour et de réexpédition seront facturés à l'acheteur avant tout nouvel envoi.",
+        contact_label: "Atelier & Renseignements",
+        contact_title: "Des Questions Avant d'Acquérir Votre Flûte ?",
+        contact_subtitle: "N'hésitez pas à contacter directement le luthier. Nous sommes à votre disposition pour vous conseiller sur l'acoustique, l'accordage et la livraison dans le monde entier.",
+        contact_email_title: "E-mail Direct de l'Atelier",
+        contact_email_desc: "Vous préférez le courrier électronique ? Écrivez directement à Ashar pour toute précision technique ou assistance.",
+        btn_send_email: "Envoyer un E-mail au Luthier",
+        contact_wa_title: "Discussion WhatsApp Atelier",
+        contact_wa_desc: "Messages audio ou texte pour toute réponse immédiate sur la disponibilité, les gammes ou la livraison express.",
+        btn_chat_wa: "Ouvrir WhatsApp"
+      },
+      es: {
+        nav_collection: "La Colección",
+        nav_maker: "El Taller",
+        nav_shipping: "Envío y Aduanas",
+        nav_contact: "Contacto",
+        hero_badge: "Entrega Inmediata · Pieza Única",
+        hero_title: "Cada Bambú Tiene una Voz. <br><span class='italic text-brand-gold font-serif'>Obras Maestras Firmadas.</span>",
+        hero_subtitle: "Fabricadas en nuestro taller en Brasil con bambú curado seleccionado, afinadas con precisión y firmadas por Ashar. Vea la demostración acústica en video antes de adquirir su pieza.",
+        perk_shipping: "Enviado desde Brasil a Todo el Mundo",
+        perk_piece: "Pieza Única Numerada",
+        perk_sound: "Prueba de Sonido en Video",
+        filter_all: "Todos los Tipos",
+        status_all: "Todos",
+        status_available: "Disponible",
+        status_sold: "Archivada / Vendida",
+        badge_available: "Disponible",
+        badge_sold: "Vendida · Archivada",
+        play_video: "Reproducir Demostración Acústica",
+        video_recorded: "Video Cloudflare R2 · Opus",
+        length_label: "Longitud",
+        tuning_label: "Afinación",
+        price_label: "Precio Todo Incluido",
+        final_price_label: "Precio de Archivo",
+        btn_acquire: "Adquirir Pieza",
+        btn_sold: "Agotado",
+        modal_ask_maker: "¿Preguntas sobre esta pieza? Consulte al artesano",
+        load_more_btn: "Cargar Más Obras del Acervo",
+        maker_label: "La Filosofía",
+        maker_title: "No hay dos piezas de bambú iguales. Tampoco sus melodías.",
+        maker_p: "<p>Cada instrumento nace de un diálogo silencioso y una profunda cocreación con la naturaleza. No invento el sonido: ya descansa en el interior del bambú, moldeado por el sol, las lluvias y el aliento del bosque. Mi labor como artesano es escuchar, despojar lo superfluo y abrir los portales del aliento para que el espíritu vivo de la madera encuentre su voz.</p><p>Más de 10 años dedicados a la investigación y perfeccionamiento de cada instrumento en mi taller en Brasil. Cuando una flauta, entre tantas, se destaca particularmente en timbre y resonancia, recibe mi firma personal y queda registrada en el Acervo.</p>",
+        stat_bamboo: "Hecho a Mano",
+        stat_delivery: "Vuelo Express",
+        stat_pieces: "Piezas Numeradas",
+        ship_label: "Alcance Global",
+        ship_title: "Envío Internacional y Términos de Aduana",
+        ship_subtitle: "Directo de nuestro ateliê en Brasil a sus manos, con seguro y seguimiento completo.",
+        ship_card1_title: "Envío Express Gratuito",
+        ship_card1_desc: "Envío prioritario de cortesía incluido: Sedex en Brasil, y EMS Internacional, FedEx o DHL Express a todo el mundo (seguimiento completo y firma, 4 a 7 días hábiles).",
+        ship_card1_other: "Para otras regiones (Asia, Oceanía, África), contáctenos para una cotización previa de envío.",
+        btn_quote_email: "Cotizar por E-mail",
+        ship_card2_title: "Aduanas e Impuestos en Destino (DDU)",
+        ship_card2_desc: "Todos los envíos internacionales se realizan bajo términos DDU. Cualquier arancel aduanero, impuesto de importación, IVA local o tasa de despacho fijado por la aduana del país de destino (incluidos Estados Unidos, Unión Europea, Reino Unido y otros) es responsabilidad exclusiva del comprador al momento de la entrega.",
+        ship_card3_title: "Política de Retorno y Reenvío",
+        ship_card3_desc: "Si el paquete retorna a Brasil por falta de pago de impuestos locales, dirección incorrecta o rechazo, los costos de devolución y reenvío serán facturados al comprador antes de un nuevo envío.",
+        contact_label: "Consultas al Taller",
+        contact_title: "¿Tiene Preguntas Antes de Adquirir su Flauta?",
+        contact_subtitle: "Consulte directamente con el luthier. Estamos aquí para orientarle sobre acústica, afinaciones y detalles de envío a su país.",
+        contact_email_title: "Correo Directo del Taller",
+        contact_email_desc: "¿Prefiere el correo electrónico? Escriba directamente a Ashar para orientación acústica detallada o asistencia con su pedido.",
+        btn_send_email: "Enviar Correo al Artesano",
+        contact_wa_title: "Chat de WhatsApp Taller",
+        contact_wa_desc: "Mensajes rápidos de texto o audio para orientación inmediata sobre disponibilidad, escalas o despacho express.",
+        btn_chat_wa: "Abrir WhatsApp"
+      },
+      it: {
+        nav_collection: "La Galleria",
+        nav_maker: "L'Atelier",
+        nav_shipping: "Spedizione & Dogana",
+        nav_contact: "Contatto",
+        hero_badge: "Pronta Consegna · Pezzo Unico",
+        hero_title: "Ogni Bambù ha una Voce. <br><span class='italic text-brand-gold font-serif'>Capolavori Firmati.</span>",
+        hero_subtitle: "Creato nel nostro atelier in Brasile con bambù stagionato selezionato, accordato con precisione acustica e firmato da Ashar. Guarda la dimostrazione acustica in video prima di acquistare.",
+        perk_shipping: "Spedito dal Brasile in Tutto il Mondo",
+        perk_piece: "Pezzo Unico Numerato",
+        perk_sound: "Test Sonoro in Video",
+        filter_all: "Tutti i Tipi",
+        status_all: "Tutti",
+        status_available: "Disponibile",
+        status_sold: "Archiviata / Venduta",
+        badge_available: "Disponibile",
+        badge_sold: "Venduta · Archiviata",
+        play_video: "Ascolta la Dimostrazione Acustica",
+        video_recorded: "Video Cloudflare R2 · Opus",
+        length_label: "Lunghezza",
+        tuning_label: "Accordo",
+        price_label: "Prezzo Tutto Incluso",
+        final_price_label: "Prezzo d'Archivio",
+        btn_acquire: "Acquista il Pezzo",
+        btn_sold: "Esaurito",
+        modal_ask_maker: "Domande su questo pezzo? Chiedi al costruttore",
+        load_more_btn: "Carica Altri Pezzi d'Archivio",
+        maker_label: "La Filosofia",
+        maker_title: "Non esistono due bambù identici. Nemmeno i loro suoni.",
+        maker_p: "<p>Ogni strumento nasce da un dialogo silenzioso e da una profonda co-creazione con la natura. Non invento il suono: esso riposa già all'interno del bambù, plasmato dal sole, dalla pioggia e dal respiro della foresta. Il mio compito di artigiano è ascoltare, togliere il superfluo e aprire i passaggi del fiato affinché l'anima viva del legno trovi la sua voce.</p><p>Oltre 10 anni dedicati alla ricerca e al perfezionamento di ogni strumento nel mio laboratorio in Brasile. Quando un flauto, tra tanti, si distingue in modo speciale per timbro e risonanza, riceve la mia firma ed entra nell'Archivio.</p>",
+        stat_bamboo: "Fatto a Mano",
+        stat_delivery: "Volo Express",
+        stat_pieces: "Pezzi Numerati",
+        ship_label: "Spedizione Globale",
+        ship_title: "Consegna nel Mondo & Condizioni Doganali",
+        ship_subtitle: "Dal nostro studio in Brasile direttamente alle tue mani, con assicurazione e tracciamento.",
+        ship_card1_title: "Spedizione Express Gratuita",
+        ship_card1_desc: "Spedizione prioritaria omaggio inclusa: Sedex in Brasile, ed EMS Internazionale, FedEx o DHL Express nel mondo (tracciamento completo e firma, 4–7 giorni lavorativi).",
+        ship_card1_other: "Per altre regiões (Asia, Oceania, Africa), contattaci per un preventivo personalizzato di spedizione.",
+        btn_quote_email: "Preventivo via Email",
+        ship_card2_title: "Dazi Doganali all'Arrivo (DDU)",
+        ship_card2_desc: "Tutte le spedizioni internazionali sono gestite con resa DDU. Qualsiasi tassa d'importazione, IVA locale o diritto doganale stabilito dalle autorità doganali del paese di destinazione (inclusi Stati Uniti, Unione Europea, Regno Unito e altri) è a carico esclusivo dell'acquirente alla consegna.",
+        ship_card3_title: "Politica di Reso & Rispedizione",
+        ship_card3_desc: "Se l'ordine torna in Brasile per mancato pagamento dei dazi, indirizzo errato o rifiuto, i costi di ritorno e rispedizione saranno addebitati all'acquirente prima del nuovo invio.",
+        contact_label: "Contatto Atelier",
+        contact_title: "Hai Domande Prima di Acquistare il tuo Flauto?",
+        contact_subtitle: "Contatta direttamente il costruttore per consigli sull'acustica, le accordature e i dettagli di spedizione nel tuo paese.",
+        contact_email_title: "Email Diretta Atelier",
+        contact_email_desc: "Preferisci l'email per i tuoi messaggi? Scrivi direttamente ad Ashar per una consulenza acustica personalizzata.",
+        btn_send_email: "Invia Email all'Artigiano",
+        contact_wa_title: "Chat WhatsApp Atelier",
+        contact_wa_desc: "Messaggi vocali o di testo rapidi per consigli immediati su disponibilità, scale musicali o spedizione rapida.",
+        btn_chat_wa: "Apri WhatsApp"
+      },
+      pt: {
+        nav_collection: "A Galeria",
+        nav_maker: "O Ateliê",
+        nav_shipping: "Envio & Alfândega",
+        nav_contact: "Contato",
+        hero_badge: "100% Pronta Entrega · Peças Únicas",
+        hero_title: "Cada Bambu Tem uma Voz. <br><span class='italic text-brand-gold font-serif'>Obras de Arte Assinadas.</span>",
+        hero_subtitle: "Criadas em nosso ateliê no Brasil a partir de bambu curado selecionado, afinadas com precisão acústica e assinadas individualmente por Ashar. Assista à demonstração em vídeo antes de adquirir.",
+        perk_shipping: "Enviado do Brasil para o Mundo",
+        perk_piece: "Peça Única Numerada",
+        perk_sound: "Vídeo com o Som Real",
+        filter_all: "Todos os Tipos",
+        status_all: "Todos",
+        status_available: "Disponíveis",
+        status_sold: "Acervo / Vendidas",
+        badge_available: "Disponível",
+        badge_sold: "Vendida · Acervo",
+        play_video: "Ouvir Demonstração Acústica",
+        video_recorded: "Vídeo Cloudflare R2 · Opus",
+        length_label: "Comprimento",
+        tuning_label: "Afinação",
+        price_label: "Valor Total da Peça",
+        final_price_label: "Valor do Acervo",
+        btn_acquire: "Adquirir Esta Peça",
+        btn_sold: "Peça Vendida",
+        modal_ask_maker: "Dúvidas sobre esta peça? Fale com o artesão",
+        load_more_btn: "Carregar Mais Peças do Acervo",
+        maker_label: "A Filosofia",
+        maker_title: "Não existem dois bambus iguais. Nem suas melodias.",
+        maker_p: "<p>Cada instrumento nasce de um diálogo silencioso e de uma profunda cocriação com a natureza. Não invento o som: ele já repousa no interior do bambu, moldado pelo sol, pelas chuvas e pelo sopro da floresta. Meu papel como artesão é escutar, retirar os excessos com calma e abrir os caminhos do ar para que a essência viva da matéria ganhe voz no mundo.</p><p>São mais de 10 anos dedicados em pesquisa e melhorias para refinar cada instrumento em meu ateliê no Brasil. Quando uma flauta entre tantas se destaca particularmente em timbre e ressonância, recebe minha assinatura pessoal e é catalogada no Acervo.</p>",
+        stat_bamboo: "Feito à Mão",
+        stat_delivery: "Envio Expresso",
+        stat_pieces: "Peças Numeradas",
+        ship_label: "Envio Internacional",
+        ship_title: "Envio Expresso e Normas Aduaneiras",
+        ship_subtitle: "Direto de nosso ateliê no Brasil até você, com seguro total e rastreamento de ponta a ponta.",
+        ship_card1_title: "Frete Expresso Gratuito",
+        ship_card1_desc: "Envio prioritário cortesia incluso: Sedex no Brasil, e EMS Internacional, FedEx ou DHL Express para o mundo todo (rastreamento de ponta a ponta e entrega sob assinatura, 4 a 7 dias úteis).",
+        ship_card1_other: "Para outras regiões (Ásia, Oceania, África, Oriente Médio), solicite uma cotação prévia de frete antes de realizar o pedido.",
+        btn_quote_email: "Cotar por E-mail",
+        ship_card2_title: "Impostos Aduaneiros no Destino (DDU)",
+        ship_card2_desc: "Todos os pedidos internacionais são enviados sob regime DDU. Quaisquer impostos de importação, tributos aduaneiros ou taxas locais apurados pela autoridade aduaneira do país de destino (incluindo Estados Unidos, União Europeia, Reino Unido e outros) são de exclusiva responsabilidade do comprador e devem ser quitados na entrega.",
+        ship_card3_title: "Política de Devolução e Reenvio",
+        ship_card3_desc: "Caso a encomenda retorne ao Brasil por recusa do comprador, endereço incorreto ou não quitação dos impostos alfandegários locais, os custos aduaneiros de retorno e o novo frete de reenvio serão de responsabilidade do comprador.",
+        contact_label: "Ateliê & Contato",
+        contact_title: "Dúvidas Antes de Adquirir sua Flauta?",
+        contact_subtitle: "Fale diretamente com o artesão. Estamos à disposição para tirar dúvidas sobre timbre, digitação, afinação e orientação de envio para sua região.",
+        contact_email_title: "E-mail Direto do Ateliê",
+        contact_email_desc: "Prefere contato por e-mail? Envie suas dúvidas diretamente para o Ashar para orientações técnicas sobre acústica ou pedidos.",
+        btn_send_email: "Enviar E-mail ao Artesão",
+        contact_wa_title: "WhatsApp do Ateliê",
+        contact_wa_desc: "Mensagens de áudio ou texto para esclarecimentos rápidos sobre instrumentos disponíveis, afinações e prazos de envio.",
+        btn_chat_wa: "Falar no WhatsApp"
+      }
+    };
+
+    // 6. RENDERIZADOR DINÂMICO DE CARDS COM SUPORTE MULTILÍNGUE
+    function renderCards() {
+      const container = document.getElementById('flutes-grid');
+      const t = translations[currentLang] || translations.en;
+
+      container.innerHTML = flutesData.map(item => {
+        const typeLabel = (typeof item.type_label === 'object') ? (item.type_label[currentLang] || item.type_label.en) : (item.type_label || item.type);
+        
+        const title = (typeof item.title === 'object' && item.title !== null)
+          ? (item.title[currentLang] || item.title.pt || item.title.en || '')
+          : (item.title || '');
+
+        const desc = (typeof item.desc === 'object' && item.desc !== null)
+          ? (item.desc[currentLang] || item.desc.pt || item.desc.en || '')
+          : (item.desc || '');
+
+        const tuning = (typeof item.specs?.tuning === 'object' && item.specs.tuning !== null)
+          ? (item.specs.tuning[currentLang] || item.specs.tuning.pt || item.specs.tuning.en || '')
+          : (item.specs?.tuning || '');
+
+        const isAvailable = (item.status === 'available');
+
+        return `
+          <div class="flute-card bg-brand-card rounded-2xl border border-brand-border hover:border-brand-gold/40 transition-all duration-300 overflow-hidden flex flex-col group ${!isAvailable ? 'opacity-85' : ''}" 
+               data-type="${item.type}" 
+               data-status="${item.status}">
+            
+            <!-- Video Container (Clicável para Expandir em Modo Cinema) -->
+            <div onclick="openVideoModal('${item.id}')" class="relative w-full aspect-[9/14] video-container flex items-center justify-center overflow-hidden cursor-pointer ${!isAvailable ? 'grayscale-[30%]' : ''}">
+              
+              <span class="absolute top-4 left-4 z-20 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] tracking-widest uppercase font-semibold text-brand-light">
+                ${typeLabel}
+              </span>
+
+              ${isAvailable ? `
+                <span class="absolute top-4 right-4 z-20 px-2.5 py-1 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-500/40 text-[10px] tracking-wider uppercase font-semibold text-emerald-300 flex items-center space-x-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping mr-1"></span> ${t.badge_available}
+                </span>
+              ` : `
+                <span class="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-red-950/80 backdrop-blur-md border border-red-500/40 text-[10px] tracking-widest uppercase font-bold text-red-300">
+                  ${t.badge_sold}
+                </span>
+              `}
+
+              <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-t from-black/90 via-transparent to-black/40">
+                <div class="w-16 h-16 rounded-full ${isAvailable ? 'bg-brand-gold/20 border-brand-gold text-brand-gold group-hover:scale-110 group-hover:bg-brand-gold group-hover:text-black' : 'bg-white/10 border-white/20 text-white/80 hover:scale-110'} border flex items-center justify-center transition-all cursor-pointer shadow-lg mb-4">
+                  <svg class="w-6 h-6 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-xs text-brand-light font-medium tracking-wider">${t.play_video}</span>
+                <span class="text-[11px] text-brand-muted mt-1">${t.video_recorded} #${item.id}</span>
+              </div>
+            </div>
+
+            <!-- Dados da Peça -->
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="text-[11px] tracking-[0.25em] ${isAvailable ? 'text-brand-gold' : 'text-brand-muted'} uppercase font-serif font-semibold">
+                  Opus #${item.id} · ${isAvailable ? 'Signature Series' : 'Archive'}
+                </div>
+                <h3 class="text-lg font-serif text-brand-light mt-1 ${!isAvailable ? 'line-through decoration-brand-gold/60' : ''}">
+                  ${title}
+                </h3>
+                <p class="text-xs text-brand-muted mt-2 leading-relaxed">
+                  ${desc}
+                </p>
+                <div class="mt-4 pt-4 border-t border-brand-border/60 flex items-center justify-between text-xs text-brand-muted">
+                  <span>${t.length_label}: ${item.specs.length}</span>
+                  <span>${t.tuning_label}: ${tuning}</span>
+                </div>
+              </div>
+
+              <!-- Ação de Compra -->
+              <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+                <div>
+                  <div class="text-xs text-brand-muted">${isAvailable ? t.price_label : t.final_price_label}</div>
+                  <div class="text-xl font-serif font-bold text-brand-light">
+                    ${formatPrice(item.price_usd)}
+                  </div>
+                </div>
+
+                ${isAvailable ? `
+                  <a href="${item.stripe_url}" target="_blank" class="px-5 py-2.5 rounded-xl bg-brand-gold hover:bg-brand-goldLight text-black font-semibold text-xs tracking-wider uppercase transition shadow-md hover:shadow-brand-gold/20 flex items-center space-x-1.5">
+                    <span>${t.btn_acquire}</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </a>
+                ` : `
+                  <div class="px-5 py-2.5 rounded-xl bg-brand-border/80 text-brand-muted font-semibold text-xs tracking-wider uppercase border border-white/5 cursor-not-allowed">
+                    ${t.btn_sold}
+                  </div>
+                `}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+
+      applyFilters();
+    }
+
+    // 7. TROCA DE IDIOMA
+    function setLanguage(lang) {
+      currentLang = lang;
+      ['en', 'fr', 'es', 'it', 'pt'].forEach(l => {
+        const btnDesktop = document.getElementById(`btn-${l}`);
+        const btnMobile = document.getElementById(`mbtn-${l}`);
+        const isLang = (l === lang);
+
+        if (btnDesktop) {
+          btnDesktop.className = isLang 
+            ? "px-1.5 py-0.5 rounded text-brand-gold font-bold transition" 
+            : "px-1.5 py-0.5 rounded text-brand-muted hover:text-brand-light transition";
+        }
+        if (btnMobile) {
+          btnMobile.className = isLang 
+            ? "px-1.5 py-0.5 rounded text-brand-gold font-bold" 
+            : "px-1.5 py-0.5 rounded text-brand-muted";
+        }
+      });
+
+      updateMobilePill();
+
+      const t = translations[lang] || translations.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          el.innerHTML = t[key];
+        }
+      });
+
+      renderCards();
+    }
+
+    // 8. FILTROS
+    let currentType = 'all';
+    let currentStatus = 'all';
+
+    function filterType(type) {
+      currentType = type;
+      document.querySelectorAll('#type-filters .type-btn').forEach(btn => {
+        if (btn.getAttribute('data-type') === type) {
+          btn.className = "type-btn active px-4 py-1.5 rounded-full text-xs font-medium tracking-wider border border-brand-gold bg-brand-gold text-black transition";
+        } else {
+          btn.className = "type-btn px-4 py-1.5 rounded-full text-xs font-medium tracking-wider border border-brand-border bg-brand-card hover:border-brand-gold/60 text-brand-muted hover:text-brand-light transition";
+        }
+      });
+      applyFilters();
+    }
+
+    function filterStatus(status) {
+      currentStatus = status;
+      document.querySelectorAll('.status-btn').forEach(btn => {
+        if (btn.getAttribute('data-status') === status) {
+          btn.className = "status-btn active px-3 py-1 rounded-full text-brand-light font-medium bg-brand-border transition";
+        } else {
+          btn.className = "status-btn px-3 py-1 rounded-full text-brand-muted hover:text-brand-light transition";
+        }
+      });
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.flute-card');
+      cards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        const status = card.getAttribute('data-status');
+
+        const matchType = (currentType === 'all' || type === currentType);
+        const matchStatus = (currentStatus === 'all' || status === currentStatus);
+
+        if (matchType && matchStatus) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    // 9. MODAL DE VÍDEO CINEMATOGRÁFICO (THEATER MODE)
+    function openVideoModal(id) {
+      const item = flutesData.find(f => f.id === id);
+      if (!item) return;
+
+      const t = translations[currentLang] || translations.en;
+      const title = (typeof item.title === 'object' && item.title !== null)
+        ? (item.title[currentLang] || item.title.pt || item.title.en || '')
+        : (item.title || '');
+
+      const desc = (typeof item.desc === 'object' && item.desc !== null)
+        ? (item.desc[currentLang] || item.desc.pt || item.desc.en || '')
+        : (item.desc || '');
+
+      const tuning = (typeof item.specs?.tuning === 'object' && item.specs.tuning !== null)
+        ? (item.specs.tuning[currentLang] || item.specs.tuning.pt || item.specs.tuning.en || '')
+        : (item.specs?.tuning || '');
+
+      const isAvailable = (item.status === 'available');
+
+      document.getElementById('modal-opus').textContent = `Opus #${item.id} · ${isAvailable ? 'Signature Series' : 'Archive'}`;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal-lbl-length').textContent = `${t.length_label}:`;
+      document.getElementById('modal-val-length').textContent = item.specs.length;
+      document.getElementById('modal-lbl-tuning').textContent = `${t.tuning_label}:`;
+      document.getElementById('modal-val-tuning').textContent = tuning;
+      document.getElementById('modal-lbl-price').textContent = isAvailable ? t.price_label : t.final_price_label;
+      document.getElementById('modal-val-price').innerHTML = formatPrice(item.price_usd);
+
+      // Botão de Compra no Modal
+      const actionBox = document.getElementById('modal-action-box');
+      if (isAvailable) {
+        actionBox.innerHTML = `
+          <a href="${item.stripe_url}" target="_blank" class="w-full py-3.5 rounded-xl bg-brand-gold hover:bg-brand-goldLight text-black font-semibold text-xs tracking-wider uppercase transition shadow-lg hover:shadow-brand-gold/30 flex items-center justify-center space-x-2">
+            <span>${t.btn_acquire}</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        `;
+      } else {
+        actionBox.innerHTML = `
+          <div class="w-full py-3.5 rounded-xl bg-brand-border/80 text-brand-muted font-semibold text-xs tracking-wider uppercase border border-white/5 text-center cursor-not-allowed">
+            ${t.btn_sold}
+          </div>
+        `;
+      }
+
+      const modal = document.getElementById('video-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal() {
+      const modal = document.getElementById('video-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeVideoModal();
+    });
+
+    document.getElementById('video-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'video-modal') closeVideoModal();
+    });
+
+    // 10. PAGINAÇÃO (CARREGAR MAIS PEÇAS DO ACERVO)
+    function loadMoreFlutes() {
+      const moreFlutes = [
+        {
+          id: "034",
+          type: "naf",
+          type_label: { en: "NAF Style", fr: "Style NAF", es: "Estilo NAF", it: "Stile NAF", pt: "Estilo NAF" },
+          status: "sold",
+          price_usd: 390,
+          title: {
+            en: "Grand Bass Flute in D Minor (432 Hz)",
+            fr: "Grande Flûte Basse en Ré Mineur (432 Hz)",
+            es: "Gran Flauta Baja en Re Menor (432 Hz)",
+            it: "Grande Flauto Basso in Re Minore (432 Hz)",
+            pt: "Grande Flauta Baixo em Ré Menor (432 Hz)"
+          },
+          desc: {
+            en: "Deep seismic frequency with profound meditation resonance. Giant diameter cured bamboo.",
+            fr: "Fréquence sismique profonde avec résonance de méditation. Bambou géant.",
+            es: "Frecuencia sísmica profunda con resonancia meditativa. Bambú gigante de gran calibre.",
+            it: "Frequenza sismica profonda per meditazione. Bambù gigante.",
+            pt: "Frequência telúrica profunda para meditação. Bambu gigante de grande calibre curado ao fogo."
+          },
+          specs: {
+            length: "82 cm",
+            tuning: { en: "Delivered (USA)", fr: "Livrée (USA)", es: "Entregada (EE.UU.)", it: "Consegnata (USA)", pt: "Entregue (EUA)" }
+          },
+          stripe_url: "#"
+        },
+        {
+          id: "031",
+          type: "transverse",
+          type_label: { en: "Transverse", fr: "Traversière", es: "Transversal", it: "Traverso", pt: "Transversal" },
+          status: "sold",
+          price_usd: 310,
+          title: {
+            en: "Celtic Folk Bamboo Flute in D (440 Hz)",
+            fr: "Flûte Celtique en Bambou en Ré (440 Hz)",
+            es: "Flauta Celta de Bambú en Re (440 Hz)",
+            it: "Flauto Celtico in Bambù in Re (440 Hz)",
+            pt: "Flauta Celta em Bambu em Ré Maior (440 Hz)"
+          },
+          desc: {
+            en: "Fast embouchure response tuned for Irish reels and jigs. Natural burnt finish.",
+            fr: "Réponse d'embouchure rapide accordée pour les reels irlandais. Finition brûlée naturelle.",
+            es: "Embocadura de rápida respuesta para música celta. Acabado natural al fuego.",
+            it: "Risposta rapida del becco accordata per folk celtico. Finitura naturale a fuoco.",
+            pt: "Resposta rápida de embocadura para música celta e folk. Acabamento rústico ao fogo."
+          },
+          specs: {
+            length: "62 cm",
+            tuning: { en: "Delivered (Germany)", fr: "Livrée (Allemagne)", es: "Entregada (Alemania)", it: "Consegnata (Germania)", pt: "Entregue (Alemanha)" }
+          },
+          stripe_url: "#"
+        }
+      ];
+
+      flutesData.push(...moreFlutes);
+      renderCards();
+
+      const btn = document.getElementById('btn-load-more');
+      btn.innerHTML = `<span>All Pieces Loaded</span>`;
+      btn.classList.add('opacity-50', 'cursor-not-allowed');
+      btn.onclick = null;
+    }
+
+    // Inicialização
+    setLanguage('en');
+    renderCards();
+  </script>
+
+</body>
+</html>
