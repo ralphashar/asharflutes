@@ -542,6 +542,11 @@
 
   <!-- ================= JAVASCRIPT: INTEGRAÇÃO GOOGLE SHEETS, CÂMBIO E IDIOMAS ================= -->
   <script>
+    // Persistência de Preview Privado para Navegação no Domínio Oficial
+    if (window.location.search.includes('preview=1')) {
+      document.cookie = "ashar_preview=1; path=/; max-age=2592000; SameSite=Lax";
+    }
+
     // 1. CARREGAMENTO EM TEMPO REAL VIA GOOGLE SHEETS JSONP
     const SHEET_ID = '1ZWM806jtjD0uQ-pRlX9Jw8jT67XltNZwVykzWq98C8w';
 
